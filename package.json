@@ -1,0 +1,14 @@
+{
+  "name": "tarkov-hideout-tracker",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "Tarkov Hideout takip uygulamas\u0131",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . TarkovHideout --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-packager": "^17.1.1"
+  }
+}

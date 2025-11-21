@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Tarkov Hideout Tracker</title>
+<style>
+    body { background:#1e1e1e; color:#ddd; font-family:Arial; padding:20px; }
+    h1 { text-align:center; color:#9cffb7; }
+    table { width:100%; border-collapse: collapse; margin-top:20px; }
+    th, td { border:1px solid #444; padding:10px; text-align:left; }
+    th { background:#0f3322; color:#9cffb7; }
+    tr:nth-child(even) { background:#2a2a2a; }
+    input[type="number"] { width:60px; padding:5px; background:#333; color:#fff; border:1px solid #555; }
+</style>
+</head>
+<body>
+<h1>Tarkov Hideout Tracker</h1>
+<table id="itemsTable">
+    <tr>
+        <th>Ürün</th>
+        <th>Gerekli</th>
+        <th>Bulunan</th>
+    </tr>
+</table>
+
+<script>
+const items = [
+["metal kesme makası",3],["termometre",2],["pgw",1],["alet seti",9],
+["devre kartı",20],["yeşil filtre",5],["cpu fan",15],["güç kaynağı",15],
+["balyoz",1],["kaliteli pense",7],["matkap",2],["kablo kesici",1],
+["motor",8],["röle",4],["oluklu boru",2],["kapasitör",7],
+["intelligent",3],["sg cl0",2],["zincir",0]
+];
+
+const table = document.getElementById("itemsTable");
+
+items.forEach(([name, needed])=>{
+    const tr = document.createElement("tr");
+    const tdName = document.createElement("td");
+    tdName.textContent = name;
+    const tdNeeded = document.createElement("td");
+    tdNeeded.textContent = needed;
+    const tdFound = document.createElement("td");
+    const input = document.createElement("input");
+    input.type = "number";
+    input.min = 0;
+    input.value = 0;
+    tdFound.appendChild(input);
+
+    tr.appendChild(tdName);
+    tr.appendChild(tdNeeded);
+    tr.appendChild(tdFound);
+    table.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
