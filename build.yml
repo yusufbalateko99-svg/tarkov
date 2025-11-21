@@ -1,0 +1,38 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Windows app with electron-packager
+        run: npm run build
+
+      - name: Create artifact zip
+        run: |
+          if (Test-Path dist) {
+            Compress-Archive -Path dist\* -DestinationPath artifact.zip -Force
+          } else {
+            Write-Error "dist folder not found"
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TarkovHideout-Windows
+          path: artifact.zip
